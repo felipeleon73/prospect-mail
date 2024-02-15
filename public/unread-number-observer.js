@@ -9,14 +9,15 @@ const observeUnreadHandlers = {
     }
     let lastcheck;
     const checkOwa = (checkonlyzerounread) => {
-      unreadSpan = document.querySelector(".C2IG3.ORnNd.oTkSL.iDEcr .o03Ce .BptzE.e0wpX.Idtcl .Idtcl.Mt2TB");
       let unread = 0;
-      if (unreadSpan) {
+      favoriteDiv = document.querySelector(".DPg26.CkdLI"); 
+      if (favoriteDiv) {
+        unreadSpan = favoriteDiv.querySelector(".C2IG3.ORnNd.oTkSL.iDEcr .o03Ce .BptzE.e0wpX.Idtcl .Idtcl.Mt2TB");
+        if (unreadSpan) {
         unread = parseInt(unreadSpan.textContent, 10);
         console.log(unread);
-      } else {
-        unread = 0
-      }
+        }
+      } 
       //unread = parseInt(unreadSpan.textContent, 10);
       require("electron").ipcRenderer.send("updateUnread", unread);
       if (unread > 0 && !checkonlyzerounread) {
